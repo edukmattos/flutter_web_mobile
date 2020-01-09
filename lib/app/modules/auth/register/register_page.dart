@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_web_mobile/app/modules/client/client_controller.dart';
 
-class ClientPage extends StatefulWidget {
+import 'register_controller.dart';
+
+class RegisterPage extends StatefulWidget {
   final String title;
-  const ClientPage({Key key, this.title = "Cliente"}) : super(key: key);
+  const RegisterPage({Key key, this.title = "Registro"}) : super(key: key);
 
   @override
-  _ClientPageState createState() => _ClientPageState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _ClientPageState extends State<ClientPage> {
+class _RegisterPageState extends State<RegisterPage> {
 
-  final clientController = ClientController();
+  final registerController = RegisterController();
   
   _textField({String labelText, onChanged, String Function() errorText}) {
-    return TextFormField(
+    return TextField(
       onChanged: onChanged,
-      textAlign: TextAlign.left,
       decoration: InputDecoration(
         border: OutlineInputBorder(),
         labelText: labelText,
@@ -40,8 +40,8 @@ class _ClientPageState extends State<ClientPage> {
               builder: (_){
                 return _textField(
                   labelText: "Nome",
-                  errorText: clientController.validateName,
-                  onChanged: clientController.changeName
+                  errorText: registerController.validateName,
+                  onChanged: registerController.changeName
                 );
               },
             ),
@@ -52,8 +52,8 @@ class _ClientPageState extends State<ClientPage> {
               builder: (_){
                 return _textField(
                   labelText: "E-mail",
-                  errorText: clientController.validateEmail,
-                  onChanged: clientController.changeEmail
+                  errorText: registerController.validateEmail,
+                  onChanged: registerController.changeEmail
                 );
               },
             ),
@@ -63,7 +63,7 @@ class _ClientPageState extends State<ClientPage> {
             Observer(
               builder: (_) {
                 return RaisedButton(
-                  onPressed: clientController.formIsValid 
+                  onPressed: registerController.formIsValid 
                   ? () { 
                       
                     } 

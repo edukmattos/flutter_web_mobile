@@ -1,4 +1,3 @@
-import 'package:flutter_web_mobile/app/repositories/material_unit_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hasura_connect/hasura_connect.dart';
@@ -7,10 +6,13 @@ import 'app_controller.dart';
 import 'app_widget.dart';
 import 'modules/client/client_module.dart';
 import 'repositories/client_repository.dart';
+import 'repositories/material_unit_repository.dart';
+import 'repositories/user_repository.dart';
 
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
+        Bind((i) => UserRepository(i.get<HasuraConnect>())),
         Bind((i) => MaterialUnitRepository()),
         Bind((i) => ClientRepository(i.get<HasuraConnect>())),
         Bind((i) => AppController()),

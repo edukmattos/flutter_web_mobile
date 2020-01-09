@@ -1,10 +1,10 @@
 import 'package:mobx/mobx.dart';
 
-part 'client_controller.g.dart';
+part 'register_controller.g.dart';
 
-class ClientController = _ClientBase with _$ClientController;
+class RegisterController = _RegisterBase with _$RegisterController;
 
-abstract class _ClientBase with Store {
+abstract class _RegisterBase with Store {
 
   @observable
   String name;
