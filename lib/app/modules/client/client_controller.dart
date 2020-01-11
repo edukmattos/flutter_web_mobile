@@ -5,7 +5,7 @@ part 'client_controller.g.dart';
 class ClientController = _ClientBase with _$ClientController;
 
 abstract class _ClientBase with Store {
-
+  
   @observable
   String name;
   @action
@@ -40,6 +40,6 @@ abstract class _ClientBase with Store {
   }
 
   formIsValidOk() {
-    
+    //clientRepository.saveClient(name, email);
   }
 }
