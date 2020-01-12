@@ -17,6 +17,7 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+  substring_highlight: ^0.1.2
   hasura_connect: ^1.0.5
   dio: ^3.0.8
   flutter_mobx: ^0.3.6

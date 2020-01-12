@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_web_mobile/app/modules/client/client_controller.dart';
+import 'package:substring_highlight/substring_highlight.dart';
 
 class ClientPage extends StatefulWidget {
   final String title;
@@ -93,7 +94,7 @@ class DataSearch extends SearchDelegate<String> {
 
   final clients = [
     "Eduardo Camara de Mattos",
-    "Bruna Pereira de Mattos",
+    "BRUNA PEREIRA DE MATTOS",
     "Sandra Pereira de Mattos",
     "Solange Pereira",
     "Sonia Pereira Bortolini",
@@ -156,7 +157,7 @@ class DataSearch extends SearchDelegate<String> {
     // Show whem someone searches for something
     final suggestionList = query.isEmpty 
       ? recentClients 
-      : clients.where((p) => p.toLowerCase().contains(query)).toList();
+      : clients.where((p) => p.contains(query)).toList();
 
     return ListView.builder(
       itemBuilder: (context, index) => ListTile(
@@ -164,23 +165,19 @@ class DataSearch extends SearchDelegate<String> {
           showResults(context);
         },
         leading: Icon(Icons.location_city),
-        title: RichText(
-          text: TextSpan(
-            text: suggestionList[index].substring(0, query.length),
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold),
-            children: [TextSpan(
-              text: suggestionList[index].substring(query.length),
-              style: TextStyle(
-                color: Colors.grey
-              )
-            )]
-          )
-        ),
+        title: SubstringHighlight(
+          text: suggestionList[index], 
+          term: query,
+          textStyle: TextStyle(                       // non-highlight style                       
+            color: Colors.grey,
+          ),
+          textStyleHighlight: TextStyle(              // highlight style
+            color: Colors.black,
+            decoration: TextDecoration.underline,
+          ), 
+        )
       ),
       itemCount: suggestionList.length,
     );
-  }
-  
+  }  
 } 
