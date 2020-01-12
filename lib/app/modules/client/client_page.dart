@@ -157,7 +157,7 @@ class DataSearch extends SearchDelegate<String> {
     // Show whem someone searches for something
     final suggestionList = query.isEmpty 
       ? recentClients 
-      : clients.where((p) => p.contains(query)).toList();
+      : clients.where((c) => c.contains(query)).toList();
 
     return ListView.builder(
       itemBuilder: (context, index) => ListTile(
