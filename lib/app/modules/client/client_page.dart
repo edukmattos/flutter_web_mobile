@@ -18,7 +18,12 @@ class _ClientPageState extends State<ClientPage> {
 
   final clientController = ClientController();
   
-  _textField({String labelText, onChanged, String Function() errorText}) {
+  _textField({
+      String labelText, 
+      String suffixIconName,
+      onChanged, 
+      String Function() errorText
+    }) {
     return TextFormField(
       textInputAction: TextInputAction.next,
       onChanged: onChanged,
@@ -31,8 +36,15 @@ class _ClientPageState extends State<ClientPage> {
     );
   }
 
-  _numericField({String labelText, onChanged, String Function() errorText}) {
+  _numericField({
+      String labelText, 
+      suffixIconName,
+      prefixIconName,
+      onChanged, 
+      String Function() errorText
+    }) {
     return TextFormField(
+      maxLength: 14,
       textInputAction: TextInputAction.next,
       keyboardType: TextInputType.number,
       inputFormatters: [
@@ -42,8 +54,15 @@ class _ClientPageState extends State<ClientPage> {
       textAlign: TextAlign.left,
       decoration: InputDecoration(
         border: OutlineInputBorder(),
+        suffixIcon: suffixIconName,
+        prefixIcon: prefixIconName,
         labelText: labelText,
+        counterText: "",
         errorText: errorText == null ? null : errorText(),
+        errorStyle: TextStyle(
+          color: Colors.red,
+          wordSpacing: 1.0,
+        ),
       ),
     );
   }
@@ -72,6 +91,8 @@ class _ClientPageState extends State<ClientPage> {
               builder: (_){
                 return _numericField(
                   labelText: "CPF/CNPJ",
+                  suffixIconName: Icon(Icons.person_outline),
+                  prefixIconName: Icon(Icons.perm_contact_calendar),
                   errorText: clientController.validateEinSsa,
                   onChanged: clientController.changeEinSsa
                 );

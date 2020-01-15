@@ -34,14 +34,14 @@ abstract class _ClientBase with Store {
       return "Invalido";
     } else if (einSsa.length == 11) {
       if (Validator.cpf(einSsa)) {
-        return "Invalido";
+        return "CPF invalido";
       }
       return null;
     } else if (einSsa.length > 11 && einSsa.length < 14) {
-      return "Invalido";
+      return "CNPJ invalido";
     } else if (einSsa.length == 14) {
       if (Validator.cnpj(einSsa)) {
-        return "Invalido";
+        return "CNPJ invalido";
       }
       return null;
     } else {
