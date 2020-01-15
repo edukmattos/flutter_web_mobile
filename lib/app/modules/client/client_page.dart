@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_web_mobile/app/modules/client/client_controller.dart';
 import 'package:substring_highlight/substring_highlight.dart';
+import 'package:pattern_formatter/pattern_formatter.dart';
+
 
 class ClientPage extends StatefulWidget {
   final String title;
@@ -17,13 +20,29 @@ class _ClientPageState extends State<ClientPage> {
   
   _textField({String labelText, onChanged, String Function() errorText}) {
     return TextFormField(
-      keyboardType: TextInputType.numberWithOptions(decimal: false),
+      textInputAction: TextInputAction.next,
       onChanged: onChanged,
       textAlign: TextAlign.left,
       decoration: InputDecoration(
         border: OutlineInputBorder(),
         labelText: labelText,
-        icon: Icon(Icons.menu),
+        errorText: errorText == null ? null : errorText(),
+      ),
+    );
+  }
+
+  _numericField({String labelText, onChanged, String Function() errorText}) {
+    return TextFormField(
+      textInputAction: TextInputAction.next,
+      keyboardType: TextInputType.number,
+      inputFormatters: [
+        WhitelistingTextInputFormatter.digitsOnly,
+      ],
+      onChanged: onChanged,
+      textAlign: TextAlign.left,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(),
+        labelText: labelText,
         errorText: errorText == null ? null : errorText(),
       ),
     );
@@ -51,7 +70,7 @@ class _ClientPageState extends State<ClientPage> {
           children: <Widget>[
             Observer(
               builder: (_){
-                return _textField(
+                return _numericField(
                   labelText: "CPF/CNPJ",
                   errorText: clientController.validateEinSsa,
                   onChanged: clientController.changeEinSsa
