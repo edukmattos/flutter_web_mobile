@@ -17,6 +17,8 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+  intl: ^0.16.1
+  flux_validator_dart: ^1.0.3
   substring_highlight: ^0.1.2
   hasura_connect: ^1.0.5
   dio: ^3.0.8

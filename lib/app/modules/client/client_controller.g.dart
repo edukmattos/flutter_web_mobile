@@ -15,6 +15,23 @@ mixin _$ClientController on _ClientBase, Store {
   bool get formIsValid =>
       (_$formIsValidComputed ??= Computed<bool>(() => super.formIsValid)).value;
 
+  final _$einSsaAtom = Atom(name: '_ClientBase.einSsa');
+
+  @override
+  String get einSsa {
+    _$einSsaAtom.context.enforceReadPolicy(_$einSsaAtom);
+    _$einSsaAtom.reportObserved();
+    return super.einSsa;
+  }
+
+  @override
+  set einSsa(String value) {
+    _$einSsaAtom.context.conditionallyRunInAction(() {
+      super.einSsa = value;
+      _$einSsaAtom.reportChanged();
+    }, _$einSsaAtom, name: '${_$einSsaAtom.name}_set');
+  }
+
   final _$nameAtom = Atom(name: '_ClientBase.name');
 
   @override
@@ -50,6 +67,16 @@ mixin _$ClientController on _ClientBase, Store {
   }
 
   final _$_ClientBaseActionController = ActionController(name: '_ClientBase');
+
+  @override
+  dynamic changeEinSsa(String value) {
+    final _$actionInfo = _$_ClientBaseActionController.startAction();
+    try {
+      return super.changeEinSsa(value);
+    } finally {
+      _$_ClientBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic changeName(String value) {

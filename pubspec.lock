@@ -198,6 +198,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flux_validator_dart:
+    dependency: "direct main"
+    description:
+      name: flux_validator_dart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.3"
   glob:
     dependency: transitive
     description:
@@ -254,6 +261,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.4"
+  intl:
+    dependency: "direct main"
+    description:
+      name: intl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.16.1"
   io:
     dependency: transitive
     description:

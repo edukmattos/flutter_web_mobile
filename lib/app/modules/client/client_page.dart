@@ -17,11 +17,13 @@ class _ClientPageState extends State<ClientPage> {
   
   _textField({String labelText, onChanged, String Function() errorText}) {
     return TextFormField(
+      keyboardType: TextInputType.numberWithOptions(decimal: false),
       onChanged: onChanged,
       textAlign: TextAlign.left,
       decoration: InputDecoration(
         border: OutlineInputBorder(),
         labelText: labelText,
+        icon: Icon(Icons.menu),
         errorText: errorText == null ? null : errorText(),
       ),
     );
@@ -47,6 +49,18 @@ class _ClientPageState extends State<ClientPage> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: <Widget>[
+            Observer(
+              builder: (_){
+                return _textField(
+                  labelText: "CPF/CNPJ",
+                  errorText: clientController.validateEinSsa,
+                  onChanged: clientController.changeEinSsa
+                );
+              },
+            ),
+            SizedBox(
+              height: 20,
+            ),
             Observer(
               builder: (_){
                 return _textField(
