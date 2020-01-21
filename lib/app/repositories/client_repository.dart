@@ -28,6 +28,19 @@ class ClientRepository extends Disposable {
     );
   }
 
+  Future<List> allClients() async {
+    var select = """
+      allClients {
+        name
+      }
+    """;
+    var data = await hasuraConnection.query(select);
+
+    print(data);
+
+    return data;
+  }
+
   //dispose will be called automatically
   @override
   void dispose() {}

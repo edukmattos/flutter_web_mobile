@@ -1,4 +1,6 @@
+import 'package:flutter_web_mobile/app/repositories/client_repository.dart';
 import 'package:flux_validator_dart/flux_validator_dart.dart';
+import 'package:hasura_connect/hasura_connect.dart';
 import 'package:mobx/mobx.dart';
 
 part 'client_controller.g.dart';
@@ -6,7 +8,9 @@ part 'client_controller.g.dart';
 class ClientController = _ClientBase with _$ClientController;
 
 abstract class _ClientBase with Store {
-  
+  static HasuraConnect hasuraConnection;
+  final clientRepository = ClientRepository(hasuraConnection);
+
   @observable
   String einSsa;
   @action
@@ -70,4 +74,11 @@ abstract class _ClientBase with Store {
   formIsValidOk() {
     //clientRepository.saveClient(name, email);
   }
+
+  allClients() {
+    print("CLIENTES");
+    var clients = clientRepository.allClients();
+    return clients;
+  }
+
 }

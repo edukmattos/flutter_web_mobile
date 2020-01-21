@@ -1,11 +1,17 @@
-import 'package:flutter_web_mobile/app/modules/client/client_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_web_mobile/app/modules/client/client_page.dart';
+import 'package:hasura_connect/hasura_connect.dart';
+
+import '../../repositories/client_repository.dart';
+import 'client_controller.dart';
+import 'client_page.dart';
 
 class ClientModule extends ChildModule {
+  
   @override
   List<Bind> get binds => [
         Bind((i) => ClientController()),
+        Bind((i) => ClientRepository(i.get<HasuraConnect>())),
+        Bind((i) => HasuraConnect("https://hero-siges.herokuapp.com/v1/graphql")),
       ];
 
   @override

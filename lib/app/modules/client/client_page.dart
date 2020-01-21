@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_web_mobile/app/modules/client/client_controller.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:substring_highlight/substring_highlight.dart';
-import 'package:pattern_formatter/pattern_formatter.dart';
 
+import 'client_controller.dart';
 
 class ClientPage extends StatefulWidget {
   final String title;
   const ClientPage({Key key, this.title = "Cliente"}) : super(key: key);
-
+  
   @override
   _ClientPageState createState() => _ClientPageState();
 }
 
 class _ClientPageState extends State<ClientPage> {
-
-  final clientController = ClientController();
   
+  final clientController = Modular.get<ClientController>();
+     
   _textField({
       String labelText, 
       String suffixIconName,
@@ -155,6 +155,7 @@ class DataSearch extends SearchDelegate<String> {
     "Antonio Francisco Meireles de Mattos",
     "Clara Maria Camara de Mattos"
   ];
+
 
   final recentClients = [
     "Sandra Pereira de Mattos",
