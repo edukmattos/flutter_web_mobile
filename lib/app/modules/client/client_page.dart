@@ -146,16 +146,17 @@ class _ClientPageState extends State<ClientPage> {
 
 class DataSearch extends SearchDelegate<String> {
 
-  final clients = [
-    "Eduardo Camara de Mattos",
-    "BRUNA PEREIRA DE MATTOS",
-    "Sandra Pereira de Mattos",
-    "Solange Pereira",
-    "Sonia Pereira Bortolini",
-    "Antonio Francisco Meireles de Mattos",
-    "Clara Maria Camara de Mattos"
-  ];
+  //final clients = [
+  //  "Eduardo Camara de Mattos",
+  //  "BRUNA PEREIRA DE MATTOS",
+  //  "Sandra Pereira de Mattos",
+  //  "Solange Pereira",
+  //  "Sonia Pereira Bortolini",
+  //  "Antonio Francisco Meireles de Mattos",
+  //  "Clara Maria Camara de Mattos"
+  //];
 
+  final clients = [];
 
   final recentClients = [
     "Sandra Pereira de Mattos",

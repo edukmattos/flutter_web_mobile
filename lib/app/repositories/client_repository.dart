@@ -28,17 +28,25 @@ class ClientRepository extends Disposable {
     );
   }
 
-  Future<List> allClients() async {
+  Future<List<ClientModel>> allClients() async {
     var select = """
-      allClients {
+      clients {
         name
       }
     """;
-    var data = await hasuraConnection.query(select);
+    var result = await hasuraConnection.query(select);
 
-    print(data);
+    var dynamics = result["data"]["clients"]
+      .map((item) => ClientModel.fromJson(item))
+      .toList(); 
 
-    return data;
+    var clients = List<ClientModel>();
+
+    for (var din in dynamics) {
+      clients.add(din as ClientModel);
+    }
+
+    return clients;
   }
 
   //dispose will be called automatically

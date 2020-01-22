@@ -1,16 +1,25 @@
-import 'package:flutter_web_mobile/app/repositories/client_repository.dart';
+import 'package:flutter_web_mobile/app/models/client_model.dart';
 import 'package:flux_validator_dart/flux_validator_dart.dart';
-import 'package:hasura_connect/hasura_connect.dart';
 import 'package:mobx/mobx.dart';
+
+import '../../repositories/client_repository.dart';
 
 part 'client_controller.g.dart';
 
 class ClientController = _ClientBase with _$ClientController;
 
 abstract class _ClientBase with Store {
-  static HasuraConnect hasuraConnection;
-  final clientRepository = ClientRepository(hasuraConnection);
+  
+  final ClientRepository clientRepository;
 
+  _ClientBase(this.clientRepository){
+    clients = clientRepository.allClients().asObservable();
+    print(clients);
+  }
+
+  @observable
+  ObservableFuture<List<ClientModel>> clients;
+   
   @observable
   String einSsa;
   @action

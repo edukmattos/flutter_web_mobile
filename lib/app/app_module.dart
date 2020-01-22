@@ -4,20 +4,15 @@ import 'package:hasura_connect/hasura_connect.dart';
 
 import 'app_controller.dart';
 import 'app_widget.dart';
+import 'config/hasura_config.dart';
 import 'modules/client/client_module.dart';
-import 'repositories/client_repository.dart';
-import 'repositories/material_unit_repository.dart';
-import 'repositories/user_repository.dart';
 
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
-        Bind((i) => UserRepository(i.get<HasuraConnect>())),
-        Bind((i) => MaterialUnitRepository()),
-        Bind((i) => ClientRepository(i.get<HasuraConnect>())),
         Bind((i) => AppController()),
         Bind((i) =>
-            HasuraConnect("https://hero-siges.herokuapp.com/v1/graphql")),
+            HasuraConnect(hasura_config_url)),
       ];
 
   @override
