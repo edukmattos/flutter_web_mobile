@@ -1,30 +1,28 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:hasura_connect/hasura_connect.dart';
 
 import '../models/client_model.dart';
-import 'package:hasura_connect/hasura_connect.dart';
 
 class ClientRepository extends Disposable {
   final HasuraConnect hasuraConnection;
 
   ClientRepository(this.hasuraConnection);
 
-  Future<ClientModel> saveClient(String name, String email) async {
+  Future<ClientModel> saveClient(String name) async {
     var insert = """
-      saveClient(\$name:String!, \$email:String!) {
-        insert_clients(objects: {name: \$name, email: \$email}) {
+      saveClient(\$name:String!) {
+        insert_clients(objects: {name: \$name}) {
           returning {
             id
           }
         }
       }
     """;
-    var data = await hasuraConnection.mutation(insert);
-    var id = data["data"]["insert_clients"]["returning"][0]["id"];
+    //var data = await hasuraConnection.mutation(insert);
+    //var id = data["data"]["insert_clients"]["returning"][0]["id"];
 
     return ClientModel(
-      id: id,
-      name: name,
-      email: email
+      name: name
     );
   }
 
@@ -34,19 +32,10 @@ class ClientRepository extends Disposable {
         name
       }
     """;
-    var result = await hasuraConnection.query(select);
+    var snapshot = await hasuraConnection.query(select);
 
-    var dynamics = result["data"]["clients"]
-      .map((item) => ClientModel.fromJson(item))
-      .toList(); 
+    return ClientModel.fromJsonList(snapshot["data"]["clients"] as List);
 
-    var clients = List<ClientModel>();
-
-    for (var din in dynamics) {
-      clients.add(din as ClientModel);
-    }
-
-    return clients;
   }
 
   //dispose will be called automatically

@@ -10,15 +10,12 @@ class ClientController = _ClientBase with _$ClientController;
 
 abstract class _ClientBase with Store {
   
-  final ClientRepository clientRepository;
+  final ClientRepository _clientRepository;
 
-  _ClientBase(this.clientRepository){
-    clients = clientRepository.allClients().asObservable();
-    print(clients);
-  }
+  _ClientBase(this._clientRepository);
 
   @observable
-  ObservableFuture<List<ClientModel>> clients;
+  List<ClientModel> clients = [];
    
   @observable
   String einSsa;
@@ -85,8 +82,8 @@ abstract class _ClientBase with Store {
   }
 
   allClients() {
-    print("CLIENTES");
-    var clients = clientRepository.allClients();
+    _clientRepository.allClients()
+      .then((data) => clients = data);
     return clients;
   }
 

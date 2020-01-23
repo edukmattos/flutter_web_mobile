@@ -15,6 +15,23 @@ mixin _$ClientController on _ClientBase, Store {
   bool get formIsValid =>
       (_$formIsValidComputed ??= Computed<bool>(() => super.formIsValid)).value;
 
+  final _$clientsAtom = Atom(name: '_ClientBase.clients');
+
+  @override
+  List<ClientModel> get clients {
+    _$clientsAtom.context.enforceReadPolicy(_$clientsAtom);
+    _$clientsAtom.reportObserved();
+    return super.clients;
+  }
+
+  @override
+  set clients(List<ClientModel> value) {
+    _$clientsAtom.context.conditionallyRunInAction(() {
+      super.clients = value;
+      _$clientsAtom.reportChanged();
+    }, _$clientsAtom, name: '${_$clientsAtom.name}_set');
+  }
+
   final _$einSsaAtom = Atom(name: '_ClientBase.einSsa');
 
   @override
@@ -64,23 +81,6 @@ mixin _$ClientController on _ClientBase, Store {
       super.email = value;
       _$emailAtom.reportChanged();
     }, _$emailAtom, name: '${_$emailAtom.name}_set');
-  }
-
-  final _$clientsAtom = Atom(name: '_ClientBase.clients');
-
-  @override
-  ObservableFuture<List<ClientModel>> get clients {
-    _$clientsAtom.context.enforceReadPolicy(_$clientsAtom);
-    _$clientsAtom.reportObserved();
-    return super.clients;
-  }
-
-  @override
-  set clients(ObservableFuture<List<ClientModel>> value) {
-    _$clientsAtom.context.conditionallyRunInAction(() {
-      super.clients = value;
-      _$clientsAtom.reportChanged();
-    }, _$clientsAtom, name: '${_$clientsAtom.name}_set');
   }
 
   final _$_ClientBaseActionController = ActionController(name: '_ClientBase');

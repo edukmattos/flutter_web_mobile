@@ -5,29 +5,32 @@ ClientModel clientModelFromJson(String str) => ClientModel.fromJson(json.decode(
 String clientModelToJson(ClientModel data) => json.encode(data.toJson());
 
 class ClientModel {
-    int id;
-    String einssa;
     String name;
-    String email;
 
     ClientModel({
-        this.id,
-        this.einssa,
         this.name,
-        this.email,
     });
 
+    ClientModel copyWith({
+        String name,
+    }) => 
+        ClientModel(
+            name: name ?? this.name,
+        );
+
     factory ClientModel.fromJson(Map<String, dynamic> json) => ClientModel(
-        id: json["id"],
-        einssa: json["einssa"],
         name: json["name"],
-        email: json["email"],
     );
 
     Map<String, dynamic> toJson() => {
-        "id": id,
-        "einssa": einssa,
         "name": name,
-        "email": email,
     };
+
+    static List<ClientModel> fromJsonList(List list) {
+      if (list == null) return null;
+
+      return list
+        .map<ClientModel>((item) => ClientModel.fromJson(item))
+        .toList();
+    }
 }
