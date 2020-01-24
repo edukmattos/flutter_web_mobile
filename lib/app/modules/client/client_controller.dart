@@ -15,8 +15,7 @@ abstract class _ClientBase with Store {
   _ClientBase(this._clientRepository) {
     _clientRepository.allClients()
       .then((data) => clients = data);
-
-      print(clients);
+      //print(clients);
   }
 
   @observable
@@ -86,9 +85,10 @@ abstract class _ClientBase with Store {
     //clientRepository.saveClient(name, email);
   }
 
-  allClients() {
-    _clientRepository.allClients()
-      .then((data) => clients = data);
-  }
+  //allClients() {
+  //  _clientRepository.allClients()
+  //    .then((data) => clients = data);
+  //    print(clients);
+  //}
 
 }

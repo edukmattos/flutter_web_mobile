@@ -31,7 +31,9 @@ class ClientRepository extends Disposable {
       query {
         clients {
           id
+          ein_ssa
           name
+          email
         }
       }
     """;

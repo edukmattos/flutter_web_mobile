@@ -22,25 +22,29 @@ class _ClientListPageState extends State<ClientListPage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Observer(
-        builder: (BuildContext context) {
-          return ListView.builder(
-            itemCount: clientController.clients.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Card(
-                child: Column(
-                  children: <Widget>[
-                    ListTile(
-                      leading: Icon(Icons.album),
-                      title: Text(clientController.clients[index].name),
-                      subtitle: Text(clientController.clients[index].name),
-                    ),
-                  ],
-                ),
-              );
-            },
-          );
-        },
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Observer(
+          builder: (BuildContext context) {
+            return ListView.builder(
+              itemCount: clientController.clients.length,
+              itemBuilder: (BuildContext context, int index) {
+                final client = clientController.clients[index];
+                return Card(
+                  child: Column(
+                    children: <Widget>[
+                      ListTile(
+                        leading: Icon(Icons.album),
+                        title: Text(client.name == null ? '' : client.name),
+                        subtitle: Text(client.email == null ? '' : client.email),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            );
+          },
+        ),
       )
     );
   }
