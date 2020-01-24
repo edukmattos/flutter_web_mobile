@@ -6,7 +6,7 @@ import 'client_controller.dart';
 
 class ClientListPage extends StatefulWidget {
   final String title;
-  const ClientListPage({Key key, this.title = "Clientes"}) : super(key: key);
+  const ClientListPage({Key key, this.title = "Clientes - Listagem"}) : super(key: key);
 
   @override
   _ClientListPageState createState() => _ClientListPageState();
@@ -25,10 +25,10 @@ class _ClientListPageState extends State<ClientListPage> {
       body: Observer(
         builder: (BuildContext context) {
           return ListView.builder(
-            itemCount: clientController.allClients().lenght,
+            itemCount: clientController.clients.length,
             itemBuilder: (BuildContext context, int index) {
               return ListTile(
-                title: Text("$index"),
+                title: Text(clientController.clients[index].name),
               );
             },
           );

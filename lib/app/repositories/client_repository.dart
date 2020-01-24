@@ -28,8 +28,11 @@ class ClientRepository extends Disposable {
 
   Future<List<ClientModel>> allClients() async {
     var select = """
-      clients {
-        name
+      query {
+        clients {
+          id
+          name
+        }
       }
     """;
     var snapshot = await hasuraConnection.query(select);

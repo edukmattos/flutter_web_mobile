@@ -5,24 +5,30 @@ ClientModel clientModelFromJson(String str) => ClientModel.fromJson(json.decode(
 String clientModelToJson(ClientModel data) => json.encode(data.toJson());
 
 class ClientModel {
+    int id;
     String name;
 
     ClientModel({
+        this.id,
         this.name,
     });
 
     ClientModel copyWith({
+        int id,
         String name,
     }) => 
         ClientModel(
+            id: id ?? this.id,
             name: name ?? this.name,
         );
 
     factory ClientModel.fromJson(Map<String, dynamic> json) => ClientModel(
-        name: json["name"],
+        id: json["id"],
+        name: json["name"]
     );
 
     Map<String, dynamic> toJson() => {
+        "id": id,
         "name": name,
     };
 

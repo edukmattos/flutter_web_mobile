@@ -12,7 +12,10 @@ abstract class _ClientBase with Store {
   
   final ClientRepository _clientRepository;
 
-  _ClientBase(this._clientRepository);
+  _ClientBase(this._clientRepository) {
+    _clientRepository.allClients()
+      .then((data) => clients = data);
+  }
 
   @observable
   List<ClientModel> clients = [];
@@ -84,7 +87,6 @@ abstract class _ClientBase with Store {
   allClients() {
     _clientRepository.allClients()
       .then((data) => clients = data);
-    return clients;
   }
 
 }
