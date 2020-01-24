@@ -15,6 +15,8 @@ abstract class _ClientBase with Store {
   _ClientBase(this._clientRepository) {
     _clientRepository.allClients()
       .then((data) => clients = data);
+
+      print(clients);
   }
 
   @observable

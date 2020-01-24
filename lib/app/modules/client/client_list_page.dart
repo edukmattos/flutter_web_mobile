@@ -27,8 +27,16 @@ class _ClientListPageState extends State<ClientListPage> {
           return ListView.builder(
             itemCount: clientController.clients.length,
             itemBuilder: (BuildContext context, int index) {
-              return ListTile(
-                title: Text(clientController.clients[index].name),
+              return Card(
+                child: Column(
+                  children: <Widget>[
+                    ListTile(
+                      leading: Icon(Icons.album),
+                      title: Text(clientController.clients[index].name),
+                      subtitle: Text(clientController.clients[index].name),
+                    ),
+                  ],
+                ),
               );
             },
           );

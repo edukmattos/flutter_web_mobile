@@ -36,6 +36,8 @@ class ClientRepository extends Disposable {
       }
     """;
     var snapshot = await hasuraConnection.query(select);
+    
+    //print(snapshot);
 
     return ClientModel.fromJsonList(snapshot["data"]["clients"] as List);
 
