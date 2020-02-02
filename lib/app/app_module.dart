@@ -1,13 +1,14 @@
-import 'package:flutter_web_mobile/app/repositories/auth/login_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_web_mobile/app/modules/auth/login/login_module.dart';
 import 'package:hasura_connect/hasura_connect.dart';
 
 import 'app_controller.dart';
 import 'app_widget.dart';
 import 'config/hasura_config.dart';
+import 'modules/auth/login/login_module.dart';
 import 'modules/client/client_module.dart';
+import 'modules/splash/splash_module.dart';
+import 'repositories/auth/login_repository.dart';
 
 class AppModule extends MainModule {
   @override
@@ -19,7 +20,8 @@ class AppModule extends MainModule {
 
   @override
   List<Router> get routers => [
-        Router('/', module: LoginModule()),
+        Router('/', module: SplashModule()),
+        Router('/login', module: LoginModule()),
         Router('/client', module: ClientModule()),
       ];
 
