@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_web_mobile/app/modules/welcome/welcome_module.dart';
 import 'package:hasura_connect/hasura_connect.dart';
 
 import 'app_controller.dart';
@@ -20,7 +21,8 @@ class AppModule extends MainModule {
 
   @override
   List<Router> get routers => [
-        Router('/', module: SplashModule()),
+        Router('/', module: LoginModule()),
+        Router('/welcome', module: WelcomeModule()),
         Router('/login', module: LoginModule()),
         Router('/client', module: ClientModule()),
       ];

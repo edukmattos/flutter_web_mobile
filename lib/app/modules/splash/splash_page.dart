@@ -21,7 +21,7 @@ class SplashPageState extends State<SplashPage>
   }
 
   void navigationPage() {
-    Navigator.pushNamed(context, '/login');
+    Navigator.pushNamed(context, '/welcome');
   }
 
   @override
