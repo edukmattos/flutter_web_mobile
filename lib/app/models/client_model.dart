@@ -6,26 +6,26 @@ String clientModelToJson(ClientModel data) => json.encode(data.toJson());
 
 class ClientModel {
     int id;
-    String ein_ssa;
+    String einSsa;
     String name;
     String email;
 
     ClientModel({
         this.id,
-        this.ein_ssa,
+        this.einSsa,
         this.name,
         this.email
     });
 
     ClientModel copyWith({
         int id,
-        String ein_ssa,
+        String einSsa,
         String name,
         String email,
     }) => 
         ClientModel(
             id: id ?? this.id,
-            ein_ssa: ein_ssa ?? this.ein_ssa,
+            einSsa: einSsa ?? this.einSsa,
             name: name ?? this.name,
             email: email ?? this.email,
         );
@@ -33,14 +33,14 @@ class ClientModel {
     factory ClientModel.fromJson(Map<String, dynamic> json) => 
       ClientModel(
         id: json["id"] as int,
-        ein_ssa: json["ein_ssa"] as String,
+        einSsa: json["einSsa"] as String,
         name: json["name"] as String,
         email: json["email"] as String
     );
 
     Map<String, dynamic> toJson() => {
         "id": id,
-        "ein_ssa": ein_ssa,
+        "einSsa": einSsa,
         "name": name,
         "email": email
     };

@@ -14,7 +14,6 @@ import 'repositories/auth/login_repository.dart';
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
-        Bind((i) => LoginRepository()),
         Bind((i) => AppController()),
         Bind((i) => HasuraConnect(hasura_config_url)),
       ];

@@ -1,33 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flux_validator_dart/flux_validator_dart.dart';
 
 import 'login_controller.dart';
 
 class LoginPage extends StatefulWidget {
+  
   final String title;
-  const LoginPage({
-    Key key,
-    this.title = "Login",
-  }) : super(key: key);
+  const LoginPage({Key key, this.title = "Login"}) : super(key: key);
 
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+
   final loginController = Modular.get<LoginController>();
 
-  final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
+  final _formKey = GlobalKey<FormState>();
 
   Widget _submitButton() {
     return RaisedButton(
-      child: new Text("Entrar", style: new TextStyle(color: Colors.white)),
+      child: new Text("ENTRAR", style: new TextStyle(color: Colors.white)),
       color: Colors.orange,
       elevation: 15.0,
       shape: StadiumBorder(),
-      onPressed: () {},
+      onPressed: () {
+        if (_formKey.currentState.validate()) {
+          // If the form is valid, display a Snackbar.
+          Scaffold.of(context)
+              .showSnackBar(SnackBar(content: Text('Processing Data')));
+          _formKey.currentState.save();
+        }
+      },
     );
   }
 
@@ -71,8 +78,8 @@ class _LoginPageState extends State<LoginPage> {
           Container(
             padding: EdgeInsets.all(18),
             height: MediaQuery.of(context).size.height,
-            child: FormBuilder(
-              key: _fbKey,
+            child: Form(
+              key: _formKey,
               autovalidate: true,
               // readonly: true,
               child: Column(
@@ -85,35 +92,40 @@ class _LoginPageState extends State<LoginPage> {
                     height: 250,
                   ),
                   SizedBox(
-                    height: 80,
+                    height: 40,
                   ),
-                  FormBuilderTextField(
-                    attribute: "email",
-                    obscureText: false,
-                    maxLines: 1,
-                    keyboardType: TextInputType.emailAddress,
-                    cursorColor: Colors.orange,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'E-mail',
-                      suffix: Tooltip(
-                        message: 'Erro',
-                        child: Icon(Icons.error, color: Colors.red, size: 20),
-                      ),
-                      prefixIcon:
-                          Icon(Icons.email, color: Colors.orange, size: 20),
-                      hintText: '',
-                    ),
-                    validators: [
-                      FormBuilderValidators.email(errorText: ''),
-                      FormBuilderValidators.required(errorText: '')
-                    ],
-                  ),
+                  Observer(
+                    name: 'email',
+                    builder: (_){
+                      return TextFormField(
+                        onChanged: loginController.changeEmail,
+                        obscureText: false,
+                        maxLines: 1,
+                        keyboardType: TextInputType.emailAddress,
+                        cursorColor: Colors.orange,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'E-mail',
+                          suffix: Tooltip(
+                            message: 'Erro',
+                            //child: Icon(Icons.error, color: Colors.red, size: 20),
+                          ),
+                          prefixIcon:
+                              Icon(Icons.email, color: Colors.orange, size: 20),
+                          helperText: 'Informe o seu e-mail.',
+                        ),
+                        validator: (value) {
+                          if (Validator.required(value)) return 'Obrigatorio.';
+                          if (Validator.email(value)) return 'Invalido.';
+                          return null;
+                        }
+                      );
+                  }),
                   SizedBox(
                     height: 10,
                   ),
-                  FormBuilderTextField(
-                    attribute: "password",
+                  TextFormField(
+                    //attribute: "password",
                     obscureText: true,
                     maxLines: 1,
                     decoration: InputDecoration(

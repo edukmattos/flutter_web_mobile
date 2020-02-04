@@ -4,6 +4,7 @@ import 'package:hasura_connect/hasura_connect.dart';
 import '../models/client_model.dart';
 
 class ClientRepository extends Disposable {
+  
   final HasuraConnect hasuraConnection;
 
   ClientRepository(this.hasuraConnection);

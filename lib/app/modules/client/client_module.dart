@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_web_mobile/app/modules/client/client_page.dart';
 import 'package:hasura_connect/hasura_connect.dart';
 
 import '../../config/hasura_config.dart';
@@ -16,7 +17,7 @@ class ClientModule extends ChildModule {
 
   @override
   List<Router> get routers => [
-        Router('/list', child: (_, args) => ClientListPage()),
+        Router('/list', child: (_, args) => ClientPage()),
       ];
 
   static Inject get to => Inject<ClientModule>.of();

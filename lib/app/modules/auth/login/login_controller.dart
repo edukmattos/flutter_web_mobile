@@ -1,8 +1,6 @@
 import 'package:flux_validator_dart/flux_validator_dart.dart';
 import 'package:mobx/mobx.dart';
 
-import '../../../repositories/auth/login_repository.dart';
-
 part 'login_controller.g.dart';
 
 class LoginController = _LoginBase with _$LoginController;
