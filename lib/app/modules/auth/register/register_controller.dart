@@ -9,10 +9,10 @@ class RegisterController = _RegisterBase with _$RegisterController;
 
 abstract class _RegisterBase with Store {
 
-  _RegisterBase({Auth firebaseAuth})
-      : _firebaseAuth = firebaseAuth ?? auth();
+  //_RegisterBase({Auth firebaseAuth})
+  //    : _firebaseAuth = firebaseAuth ?? auth();
 
-  final Auth _firebaseAuth;
+  //final Auth _firebaseAuth;
   
   @observable
   String name;
@@ -64,6 +64,6 @@ abstract class _RegisterBase with Store {
   Future<bool> register() async {
     //await _firebaseAuth.createUserWithEmailAndPassword(email, password);
     
-    //return true;
+    return true;
   }
 }
