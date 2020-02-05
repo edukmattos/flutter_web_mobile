@@ -17,6 +17,10 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+  firebase: ^7.2.1
+  firebase_auth_web: ^0.1.2
+  firebase_auth: ^0.15.4
+  flutter_styled_toast: ^1.2.1
   google_fonts: ^0.3.6
   flutter_form_builder: ^3.7.3
   pattern_formatter: ^1.0.1
@@ -57,6 +61,7 @@ flutter:
   assets:
     - assets/images/logo.jpeg
     - assets/images/powered_by.png
+    - assets/images/google_logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

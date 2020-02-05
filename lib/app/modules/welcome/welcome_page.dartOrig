@@ -11,11 +11,11 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
-  
-  Widget _signInButton() {
+  Widget _submitButton() {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, '/auth');
+        //Navigator.push(
+        //    context, MaterialPageRoute(builder: (context) => LoginPage()));
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -42,7 +42,8 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget _signUpButton() {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, '/auth/register');
+        //Navigator.push(
+        //    context, MaterialPageRoute(builder: (context) => SignUpPage()));
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -141,7 +142,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 SizedBox(
                   height: 80,
                 ),
-                _signInButton(),
+                _submitButton(),
                 SizedBox(
                   height: 20,
                 ),

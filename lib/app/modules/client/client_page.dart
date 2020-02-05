@@ -93,8 +93,8 @@ class _ClientPageState extends State<ClientPage> {
                   labelText: "CPF/CNPJ",
                   suffixIconName: Icon(Icons.person_outline),
                   prefixIconName: Icon(Icons.perm_contact_calendar),
-                  errorText: clientController.validateEinSsa,
-                  onChanged: clientController.changeEinSsa
+                  errorText: clientController.clientModel.validateEinSsa,
+                  onChanged: clientController.clientModel.changeEinSsa
                 );
               },
             ),
@@ -105,8 +105,8 @@ class _ClientPageState extends State<ClientPage> {
               builder: (_){
                 return _textField(
                   labelText: "Nome",
-                  errorText: clientController.validateName,
-                  onChanged: clientController.changeName
+                  errorText: clientController.clientModel.validateName,
+                  onChanged: clientController.clientModel.changeName
                 );
               },
             ),
@@ -117,8 +117,8 @@ class _ClientPageState extends State<ClientPage> {
               builder: (_){
                 return _textField(
                   labelText: "E-mail",
-                  errorText: clientController.validateEmail,
-                  onChanged: clientController.changeEmail
+                  errorText: clientController.clientModel.validateEmail,
+                  onChanged: clientController.clientModel.changeEmail
                 );
               },
             ),
@@ -128,11 +128,9 @@ class _ClientPageState extends State<ClientPage> {
             Observer(
               builder: (_) {
                 return RaisedButton(
-                  onPressed: clientController.formIsValid 
-                  ? () { 
+                  onPressed: () { 
                       
-                    } 
-                  : null,
+                    },
                   child: Text("Salvar"),
                 );
               },
@@ -146,17 +144,17 @@ class _ClientPageState extends State<ClientPage> {
 
 class DataSearch extends SearchDelegate<String> {
 
-  //final clients = [
-  //  "Eduardo Camara de Mattos",
-  //  "BRUNA PEREIRA DE MATTOS",
-  //  "Sandra Pereira de Mattos",
-  //  "Solange Pereira",
-  //  "Sonia Pereira Bortolini",
-  //  "Antonio Francisco Meireles de Mattos",
-  //  "Clara Maria Camara de Mattos"
-  //];
+  final clients = [
+    "Eduardo Camara de Mattos",
+    "BRUNA PEREIRA DE MATTOS",
+    "Sandra Pereira de Mattos",
+    "Solange Pereira",
+    "Sonia Pereira Bortolini",
+    "Antonio Francisco Meireles de Mattos",
+    "Clara Maria Camara de Mattos"
+  ];
 
-  final clients = [];
+  //final clients = [];
 
   final recentClients = [
     "Sandra Pereira de Mattos",

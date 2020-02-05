@@ -1,4 +1,4 @@
-package com.example.flutter_web_mobile
+package br.com.ekmtek.firebase
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

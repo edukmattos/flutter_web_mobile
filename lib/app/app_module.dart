@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_web_mobile/app/modules/welcome/welcome_module.dart';
 import 'package:hasura_connect/hasura_connect.dart';
 
 import 'app_controller.dart';
 import 'app_widget.dart';
 import 'config/hasura_config.dart';
-import 'modules/auth/login/login_module.dart';
+import 'modules/auth/auth_module.dart';
 import 'modules/client/client_module.dart';
-import 'modules/splash/splash_module.dart';
-import 'repositories/auth/login_repository.dart';
+import 'modules/splash/splash_page.dart';
+import 'modules/welcome/welcome_module.dart';
 
 class AppModule extends MainModule {
   @override
@@ -20,10 +19,11 @@ class AppModule extends MainModule {
 
   @override
   List<Router> get routers => [
-        Router('/', module: LoginModule()),
-        Router('/welcome', module: WelcomeModule()),
-        Router('/login', module: LoginModule()),
-        Router('/client', module: ClientModule()),
+        //Router('/', module: SplashModule()),
+        Router('/', child: (_, args) => SplashPage()),
+        Router('/welcome', module: WelcomeModule(), transition: TransitionType.rightToLeft),
+        Router('/auth', module: AuthModule(), transition: TransitionType.rightToLeft),
+        Router('/client', module: ClientModule(), transition: TransitionType.rightToLeft),
       ];
 
   @override

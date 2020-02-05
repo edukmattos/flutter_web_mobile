@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'register_controller.dart';
+part of 'auth_controller.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,14 +8,14 @@ part of 'register_controller.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$RegisterController on _RegisterBase, Store {
+mixin _$AuthController on _AuthBase, Store {
   Computed<bool> _$isFormValidComputed;
 
   @override
   bool get isFormValid =>
       (_$isFormValidComputed ??= Computed<bool>(() => super.isFormValid)).value;
 
-  final _$nameAtom = Atom(name: '_RegisterBase.name');
+  final _$nameAtom = Atom(name: '_AuthBase.name');
 
   @override
   String get name {
@@ -32,7 +32,7 @@ mixin _$RegisterController on _RegisterBase, Store {
     }, _$nameAtom, name: '${_$nameAtom.name}_set');
   }
 
-  final _$emailAtom = Atom(name: '_RegisterBase.email');
+  final _$emailAtom = Atom(name: '_AuthBase.email');
 
   @override
   String get email {
@@ -49,7 +49,7 @@ mixin _$RegisterController on _RegisterBase, Store {
     }, _$emailAtom, name: '${_$emailAtom.name}_set');
   }
 
-  final _$passwordAtom = Atom(name: '_RegisterBase.password');
+  final _$passwordAtom = Atom(name: '_AuthBase.password');
 
   @override
   String get password {
@@ -66,70 +66,42 @@ mixin _$RegisterController on _RegisterBase, Store {
     }, _$passwordAtom, name: '${_$passwordAtom.name}_set');
   }
 
-  final _$passwordConfirmAtom = Atom(name: '_RegisterBase.passwordConfirm');
+  final _$loginAsyncAction = AsyncAction('login');
 
   @override
-  String get passwordConfirm {
-    _$passwordConfirmAtom.context.enforceReadPolicy(_$passwordConfirmAtom);
-    _$passwordConfirmAtom.reportObserved();
-    return super.passwordConfirm;
+  Future<bool> login() {
+    return _$loginAsyncAction.run(() => super.login());
   }
 
-  @override
-  set passwordConfirm(String value) {
-    _$passwordConfirmAtom.context.conditionallyRunInAction(() {
-      super.passwordConfirm = value;
-      _$passwordConfirmAtom.reportChanged();
-    }, _$passwordConfirmAtom, name: '${_$passwordConfirmAtom.name}_set');
-  }
-
-  final _$registerAsyncAction = AsyncAction('register');
-
-  @override
-  Future<bool> register() {
-    return _$registerAsyncAction.run(() => super.register());
-  }
-
-  final _$_RegisterBaseActionController =
-      ActionController(name: '_RegisterBase');
+  final _$_AuthBaseActionController = ActionController(name: '_AuthBase');
 
   @override
   dynamic changeName(String value) {
-    final _$actionInfo = _$_RegisterBaseActionController.startAction();
+    final _$actionInfo = _$_AuthBaseActionController.startAction();
     try {
       return super.changeName(value);
     } finally {
-      _$_RegisterBaseActionController.endAction(_$actionInfo);
+      _$_AuthBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic changeEmail(String value) {
-    final _$actionInfo = _$_RegisterBaseActionController.startAction();
+    final _$actionInfo = _$_AuthBaseActionController.startAction();
     try {
       return super.changeEmail(value);
     } finally {
-      _$_RegisterBaseActionController.endAction(_$actionInfo);
+      _$_AuthBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic changePassword(String value) {
-    final _$actionInfo = _$_RegisterBaseActionController.startAction();
+    final _$actionInfo = _$_AuthBaseActionController.startAction();
     try {
       return super.changePassword(value);
     } finally {
-      _$_RegisterBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic changePasswordConfirm(String value) {
-    final _$actionInfo = _$_RegisterBaseActionController.startAction();
-    try {
-      return super.changePasswordConfirm(value);
-    } finally {
-      _$_RegisterBaseActionController.endAction(_$actionInfo);
+      _$_AuthBaseActionController.endAction(_$actionInfo);
     }
   }
 }

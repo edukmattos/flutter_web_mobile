@@ -5,6 +5,30 @@
   <title>flutter_web_mobile</title>
 </head>
 <body>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAAkKY9dkFVD37ZL6Q61Zg4tb0ei9fwBik",
+    authDomain: "fir-6032e.firebaseapp.com",
+    databaseURL: "https://fir-6032e.firebaseio.com",
+    projectId: "fir-6032e",
+    storageBucket: "fir-6032e.appspot.com",
+    messagingSenderId: "496616678276",
+    appId: "1:496616678276:web:164d93f06ded76079533d1",
+    measurementId: "G-X6TDBJPRXP"
+  };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+
   <script src="main.dart.js" type="application/javascript"></script>
 </body>
 </html>

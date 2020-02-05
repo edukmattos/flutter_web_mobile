@@ -1,54 +1,68 @@
-import 'dart:convert';
+import 'package:flux_validator_dart/flux_validator_dart.dart';
+import 'package:mobx/mobx.dart';
 
-ClientModel clientModelFromJson(String str) => ClientModel.fromJson(json.decode(str));
+part 'client_model.g.dart';
 
-String clientModelToJson(ClientModel data) => json.encode(data.toJson());
+class ClientModel = _ClientModelBase with _$ClientModel;
 
-class ClientModel {
-    int id;
-    String einSsa;
-    String name;
-    String email;
+abstract class _ClientModelBase with Store {
 
-    ClientModel({
-        this.id,
-        this.einSsa,
-        this.name,
-        this.email
-    });
+  @observable
+  String einSsa;
+  
+  @action
+  changeEinSsa(String value) => einSsa = value;
 
-    ClientModel copyWith({
-        int id,
-        String einSsa,
-        String name,
-        String email,
-    }) => 
-        ClientModel(
-            id: id ?? this.id,
-            einSsa: einSsa ?? this.einSsa,
-            name: name ?? this.name,
-            email: email ?? this.email,
-        );
+  @observable
+  String name;
+  
+  @action
+  changeName(String value) => name = value;
 
-    factory ClientModel.fromJson(Map<String, dynamic> json) => 
-      ClientModel(
-        id: json["id"] as int,
-        einSsa: json["einSsa"] as String,
-        name: json["name"] as String,
-        email: json["email"] as String
-    );
+  @observable
+  String email;
+  
+  @action
+  changeEmail(String value) => email = value;
 
-    Map<String, dynamic> toJson() => {
-        "id": id,
-        "einSsa": einSsa,
-        "name": name,
-        "email": email
-    };
-
-    static List<ClientModel> fromJsonList(List list) {
-      if (list == null) return null;
-      return list
-        .map<ClientModel>((item) => ClientModel.fromJson(item))
-        .toList();
+  String validateEinSsa() {
+    if (einSsa == null || einSsa.isEmpty) {
+      return "Obrigatorio";
+    } else if (einSsa.length < 11) {
+      return "Invalido";
+    } else if (einSsa.length == 11) {
+      if (Validator.cpf(einSsa)) {
+        return "CPF invalido";
+      }
+      return null;
+    } else if (einSsa.length > 11 && einSsa.length < 14) {
+      return "CNPJ invalido";
+    } else if (einSsa.length == 14) {
+      if (Validator.cnpj(einSsa)) {
+        return "CNPJ invalido";
+      }
+      return null;
+    } else {
+      return "Invalido";
     }
+  }
+  
+  String validateName() {
+    if (name == null || name.isEmpty) {
+      return "Obrigatorio";
+    } else if (name.length < 3) {
+      return "Maior que 03 caracteres";
+    }
+    return null;
+  }
+
+  String validateEmail() {
+    if (email == null || email.isEmpty) {
+      return "Obrigatorio";
+    } else if (Validator.email(email)) {
+      return "Invalido";
+    }
+    return null;
+  }
+
 }
