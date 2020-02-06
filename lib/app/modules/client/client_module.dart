@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_web_mobile/app/modules/client/client_list_page.dart';
 import 'package:flutter_web_mobile/app/modules/client/client_page.dart';
 import 'package:hasura_connect/hasura_connect.dart';
 
@@ -16,7 +17,7 @@ class ClientModule extends ChildModule {
 
   @override
   List<Router> get routers => [
-        Router('/', child: (_, args) => ClientPage()),
+        Router('/', child: (_, args) => ClientListPage()),
         Router('/list', child: (_, args) => ClientPage()),
       ];
 

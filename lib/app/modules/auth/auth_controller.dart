@@ -1,7 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flux_validator_dart/flux_validator_dart.dart';
-
-import '../../models/user_model.dart';
 import 'package:mobx/mobx.dart';
 
 part 'auth_controller.g.dart';
@@ -46,7 +43,6 @@ abstract class _AuthBase with Store {
 
   @action
   Future<bool> login() async {
-    FirebaseAuth;
     return false;
   }
 

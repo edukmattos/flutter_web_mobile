@@ -50,7 +50,7 @@ class UserRepository {
         _firebaseAuth.signOut(),
       ]);
     } catch (e) {
-      print('Error signin out: $e');
+      print ('Error signin out: $e');
       // return e;
       throw '$e';
     }
